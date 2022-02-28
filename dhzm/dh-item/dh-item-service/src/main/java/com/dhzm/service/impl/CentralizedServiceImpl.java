@@ -73,7 +73,7 @@ public class CentralizedServiceImpl implements CentralizedService {
     }
 
     @Override
-    public void insertCentralized(String network, String ip, String port) {
-        centralizedMapper.insertCentralized( network,  ip,  port);
+    public void insertCentralized(String position,String network, String ip, String port) {
+        centralizedMapper.insertCentralized( position,network,  ip,  port);
     }
 }

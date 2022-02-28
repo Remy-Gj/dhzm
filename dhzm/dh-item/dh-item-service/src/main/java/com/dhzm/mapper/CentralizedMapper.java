@@ -14,6 +14,6 @@ public interface CentralizedMapper {
     @Select("SELECT network,ip,`port` FROM `centralized` WHERE  jid=#{jid}")
     List<Centralized> findByCentralized(Integer jid);
 
-    @Insert("INSERT INTO `centralized` VALUES(NULL,#{network},#{ip},#{port},NULL,NULL,NULL)\n")
-    void insertCentralized(String network, String ip, String port);
+    @Insert("INSERT INTO `centralized` VALUES(NULL,#{position},#{network},#{ip},#{port},NULL,NULL,NULL)\n")
+    void insertCentralized(String position,String network, String ip, String port);
 }

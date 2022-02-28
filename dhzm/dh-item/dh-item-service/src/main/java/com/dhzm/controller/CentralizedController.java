@@ -23,10 +23,11 @@ public class CentralizedController {
         return list;
     }
     @RequestMapping("addEcc")
-    public Object insertCentralized(@RequestParam("eccUid") String network,
+    public Object insertCentralized(@RequestParam("eccPosition") String position,
+                                    @RequestParam("eccUid") String network,
                                     @RequestParam("eccIp") String ip,
                                     @RequestParam("eccPort") String port){
-        centralizedService.insertCentralized(network,ip,port);
+        centralizedService.insertCentralized(position,network,ip,port);
         return "ok";
     }
 

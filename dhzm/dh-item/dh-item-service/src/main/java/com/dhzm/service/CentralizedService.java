@@ -9,5 +9,5 @@ public interface CentralizedService {
 
     Object findByCentralized(String  uid, String command, String groups, String  grade, Integer jid);
 
-    void insertCentralized(String network, String ip, String port);
+    void insertCentralized(String position,String network, String ip, String port);
 }

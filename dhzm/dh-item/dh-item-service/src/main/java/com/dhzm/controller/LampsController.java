@@ -62,6 +62,7 @@ public class LampsController {
                             @RequestParam("jid") Integer jid//集中控制器id
     ){
         Object byCentralized = centralizedService.findByCentralized(uid, command, groups, grade, jid);
+        System.out.println(command);
         lampsService.update(uid,command);
         return byCentralized;
     }
