@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dh-common/dh-common.iml" filepath="$PROJECT_DIR$/dhzm/dh-common/dh-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dh-item/dh-item.iml" filepath="$PROJECT_DIR$/dhzm/dh-item/dh-item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dh-item/dh-item-interface/dh-item-interface.iml" filepath="$PROJECT_DIR$/dhzm/dh-item/dh-item-interface/dh-item-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dh-item/dh-item-service/dh-item-service.iml" filepath="$PROJECT_DIR$/dhzm/dh-item/dh-item-service/dh-item-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dh-registry/dh-registry.iml" filepath="$PROJECT_DIR$/dhzm/dh-registry/dh-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/dhzm.iml" filepath="$PROJECT_DIR$/dhzm/dhzm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dhzm/zp-api-gateway/zp-api-gateway.iml" filepath="$PROJECT_DIR$/dhzm/zp-api-gateway/zp-api-gateway.iml" />
+    </modules>
+  </component>
+</project>
