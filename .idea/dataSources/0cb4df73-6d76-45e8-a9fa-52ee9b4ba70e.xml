@@ -1540,12 +1540,12 @@
     <column id="393" parent="254" name="addtime">
       <Position>7</Position>
       <Comment>添加时间</Comment>
-      <DataType>datetime|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
     </column>
     <column id="394" parent="254" name="updatetime">
       <Position>8</Position>
       <Comment>修改时间</Comment>
-      <DataType>datetime|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
     </column>
     <key id="395" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1620,7 +1620,7 @@
     <column id="409" parent="256" name="comtime">
       <Position>10</Position>
       <Comment>通讯时间</Comment>
-      <DataType>datetime|0s</DataType>
+      <DataType>varchar(50)|0s</DataType>
     </column>
     <column id="410" parent="256" name="operation">
       <Position>11</Position>

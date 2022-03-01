@@ -1,5 +1,6 @@
 package com.dhzm.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -10,18 +11,13 @@ import org.springframework.web.filter.CorsFilter;
 public class CorsConfing {
 
     @Bean
-    public CorsFilter corsFilter(){
+    public FilterRegistrationBean corsFilter(){
 
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
+        corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.addAllowedOrigin("http://192.168.1.22:8081");
-        corsConfiguration.addAllowedOrigin("http://192.168.1.22:8080");
-        corsConfiguration.addAllowedHeader("http://127.0.0.1:8080");
-        corsConfiguration.addAllowedHeader("http://127.0.0.1:8081");
-        corsConfiguration.addAllowedHeader("http://192.168.1.144:8080");
-        corsConfiguration.addAllowedHeader("http://192.168.1.22:8080");
 //        corsConfiguration.addAllowedMethod("OPTIONS");
 //        corsConfiguration.addAllowedMethod("HEAD");
 //        corsConfiguration.addAllowedMethod("GET");
@@ -36,9 +32,9 @@ public class CorsConfing {
 
         source.registerCorsConfiguration("/**",corsConfiguration);
 
-        CorsFilter corsFilter = new CorsFilter(source);
-
-        return corsFilter;
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        bean.setOrder(0);
+        return bean;
 
     }
 }

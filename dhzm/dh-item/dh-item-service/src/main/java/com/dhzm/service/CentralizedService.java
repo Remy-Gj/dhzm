@@ -7,7 +7,9 @@ import java.util.List;
 public interface CentralizedService {
     List<Centralized> selectCentralized();
 
-    Object findByCentralized(String  uid, String command, String groups, String  grade, Integer jid);
+    Object findByCentralized(String uid, String command, String groups, String grade, Integer jid);
 
-    void insertCentralized(String position,String network, String ip, String port);
+    void insertCentralized(String position, String network, String ip, String port);
+
+    Object editCentralized(Integer ecJid, String ecPosition, String ecIp, String ecNetwork, String port);
 }

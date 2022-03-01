@@ -7,6 +7,8 @@ import com.dhzm.service.LampsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,7 +32,11 @@ private LampsMapper lampsMapper;
 
     @Override
     public void update(String uid, String command) {
-        lampsMapper.update(uid,command);
+        Date date = new Date();
+        long time = date.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String communicationTime = simpleDateFormat.format(time);
+        lampsMapper.update(uid,command,communicationTime);
     }
 
 }
