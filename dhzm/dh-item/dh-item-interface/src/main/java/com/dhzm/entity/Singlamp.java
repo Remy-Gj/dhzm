@@ -10,7 +10,7 @@ public class Singlamp {
   private String state;
   private String brightness1;
   private String types;
-  private java.sql.Timestamp comtime;
+  private String comtime;
   private String operation;
   private String  grade;
   private String command;
@@ -126,14 +126,13 @@ public class Singlamp {
   }
 
 
-  public java.sql.Timestamp getComtime() {
+  public String getComtime() {
     return comtime;
   }
 
-  public void setComtime(java.sql.Timestamp comtime) {
+  public void setComtime(String comtime) {
     this.comtime = comtime;
   }
-
 
   public String getOperation() {
     return operation;

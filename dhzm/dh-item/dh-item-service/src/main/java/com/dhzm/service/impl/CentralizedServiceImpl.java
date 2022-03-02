@@ -4,8 +4,11 @@ import com.dhzm.Utils.CommandProcessing;
 import com.dhzm.Utils.ObjTransForm;
 import com.dhzm.Utils.TcpSend;
 import com.dhzm.entity.Centralized;
+import com.dhzm.entity.Singlamp;
 import com.dhzm.mapper.CentralizedMapper;
+import com.dhzm.mapper.LampsMapper;
 import com.dhzm.service.CentralizedService;
+import com.dhzm.service.LampsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,11 @@ public class CentralizedServiceImpl implements CentralizedService {
     @Autowired
     private CentralizedMapper centralizedMapper;
 
+    @Autowired
+    private LampsMapper lampsMapper;
+
+    @Autowired
+    private LampsService lampsService;
 
     @Override
     public List<Centralized> selectCentralized() {
@@ -34,13 +42,19 @@ public class CentralizedServiceImpl implements CentralizedService {
     @Override
     public Object findByCentralized(String uid, String command, String groups, String grade, Integer jid) {
         List<Centralized> centralizedList = centralizedMapper.findByCentralized(jid);
+        if (!"33".equals(command)){
+            lampsService.update(uid, command);
+        }
 
+        if ("33".equals(command)) {
+            lampsMapper.updateGrade(grade, uid);
+        }
+        Singlamp singlamp = lampsMapper.selectLamp(uid);
         String network = null;//集中控制器名称
         String ip = null;//ip
         Integer port = null;//端口
         for (Centralized a : centralizedList) {
             network = a.getNetwork().replaceAll(":", "");
-            ;
             ip = a.getIp();
             port = a.getPort();
         }
@@ -57,22 +71,42 @@ public class CentralizedServiceImpl implements CentralizedService {
             grades = objTransForm.intToHex(Integer.parseInt(grade), command);
         }
 
+
         CommandProcessing commandProcessing = new CommandProcessing();
         //计算包长pklength
         String commandsSum = uid + command + groups + lamps + grades;//命令段10000020819332000300
-
-        commandsSum = commandsSum.replaceAll("\"", "");//去掉拼接字符串中的“”
+        //commandsSum = commandsSum.replaceAll("\"", "");//去掉拼接字符串中的“”
         String pklength = commandProcessing.packageLength(network, commandsSum);
 
         //计算校验码
         String checkcode = commandProcessing.packageVerification(instructions, pklength, network, commandsSum);
-        checkcode = checkcode.replaceAll("\"", "");//去掉拼接字符串中的“”
-
+        //checkcode = checkcode.replaceAll("\"", "");//去掉拼接字符串中的“”
         String comand = hander + instructions + pklength + network + commandsSum + checkcode + pktail;
-        comand = comand.replaceAll("\"", "");//去掉拼接字符串中的“”
-
+        //comand = comand.replaceAll("\"", "");//去掉拼接字符串中的“”
         TcpSend tcpSend = new TcpSend(ip, port, comand);
         tcpSend.connect();
+
+
+        if ("31".equals(command)) {
+            Integer grade1 = Integer.parseInt(singlamp.getGrade());
+            grade = String.valueOf(grade1 / 5);
+            ObjTransForm objTransForm = new ObjTransForm();
+            grades = objTransForm.intToHex(Integer.parseInt(grade), command);
+
+            String commandsSumGrade = uid + "33" + groups + lamps + grades;
+            String gradelength = commandProcessing.packageLength(network, commandsSumGrade);
+            String gradecode = commandProcessing.packageVerification(instructions, gradelength, network, commandsSumGrade);
+            String gradecomand = hander + instructions + gradelength + network + commandsSumGrade + gradecode + pktail;
+
+            System.err.println(gradecomand);
+            try {
+                Thread.sleep(50);
+                TcpSend tcpSendgrade = new TcpSend(ip, port, gradecomand);
+                tcpSendgrade.connect();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         return command;
     }

@@ -12,5 +12,5 @@ public interface LampsService {
     List<Singlecontrol> openLamps(@Param("uid") String uid, @Param("command")String command);
 
 
-    void update(@Param("uid") String uid, @Param("command")String command);
+    void update(@Param("uid") String uid, @Param("command") String command);
 }

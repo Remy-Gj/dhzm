@@ -42,17 +42,17 @@ public class LampsController {
      */
 
 //    @RequestMapping("LampState")
-    public Object dopenLamps(@RequestParam("uid")String uid, @RequestParam("command")String command){
-        List<Singlecontrol> list=lampsService.openLamps(uid,command);
-        String ml = null;//那一大串
-        for (Singlecontrol a : list) {
-            ml=a.toString();
-        }
-        TcpSend tcpSend = new TcpSend("192.168.1.99", 99, ml);
-        tcpSend.connect();
-        lampsService.update(uid,command);
-        return "ok";
-    }
+//    public Object dopenLamps(@RequestParam("uid")String uid, @RequestParam("command")String command){
+//        List<Singlecontrol> list=lampsService.openLamps(uid,command);
+//        String ml = null;//那一大串
+//        for (Singlecontrol a : list) {
+//            ml=a.toString();
+//        }
+//        TcpSend tcpSend = new TcpSend("192.168.1.99", 99, ml);
+//        tcpSend.connect();
+//        lampsService.update(uid,command);
+//        return "ok";
+//    }
 
     @RequestMapping("LampState")
     public Object lampState(@RequestParam("uid") String  uid,//单灯uid
@@ -62,7 +62,6 @@ public class LampsController {
                             @RequestParam("jid") Integer jid//集中控制器id
     ){
         Object byCentralized = centralizedService.findByCentralized(uid, command, groups, grade, jid);
-        lampsService.update(uid,command);
         return byCentralized;
     }
 

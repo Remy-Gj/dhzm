@@ -16,6 +16,12 @@ public interface LampsMapper {
     @Select("SELECT hander,instructions,pklength,centralized,uid,command,groups,lamps,bright,checkcode,pktail FROM SingleControl WHERE uid=#{uid} AND command =#{command}")
     List<Singlecontrol> openLamps(@Param("uid") String uid, @Param("command")String command);
 
-    @Update("UPDATE `singlamp` SET command = #{command} , comtime = #{communicationTime} WHERE uid =#{uid} ")
+    @Update("UPDATE `singlamp` SET command = #{command} , comtime = #{communicationTime}  WHERE uid = #{uid} ")
     void update(@Param("uid") String uid, @Param("command")String command,String communicationTime);
+
+    @Select("select a.* from singlamp a where a.uid = #{uid}")
+    Singlamp selectLamp(@Param("uid") String uid);
+
+    @Update("UPDATE `singlamp` SET grade = #{grade} WHERE uid = #{uid}")
+    void updateGrade(String grade,String uid);
 }
