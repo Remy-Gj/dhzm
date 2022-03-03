@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 /**
  * @author Remy~
@@ -19,40 +20,42 @@ public class TcpRead {
     private ObjTransForm objTransForm = new ObjTransForm();
 
     /**
-     *
+     * @param port 需要监听的端口
+     * @return null
      * @author Remy~
      * @date 2022/2/18 11:13
-     * @param  port 需要监听的端口
-     * @return  null
      */
-    public TcpRead(Integer port){
+    public TcpRead(Integer port) {
         this.port = port;
-
+        socketThreads = new ArrayList<>();
     }
+
+
     //启动监听
-    public void start() {
+    public Object start() {
         isFinished = false;
         try {
             //创建服务器套接字，绑定到指定的端口
             serverSocket = new ServerSocket(port);
+            Socket socket = serverSocket.accept();//接受连接
             //等待客户端连接
             while (!isFinished) {
-                Socket socket = serverSocket.accept();//接受连接
+
                 //创建线程处理连接
                 SocketThread socketThread = new SocketThread(socket);
                 socketThreads.add(socketThread);
-                socketThread.start();
+                return socketThread.call();
             }
         } catch (IOException e) {
             isFinished = true;
         }
+        return "250";
     }
 
     //关闭监听
     public void stop() {
         isFinished = true;
         for (SocketThread socketThread : socketThreads) {
-            socketThread.interrupt();
             socketThread.close();
         }
         try {
@@ -64,8 +67,9 @@ public class TcpRead {
             e.printStackTrace();
         }
     }
+
     //启动监听的线程
-    private class SocketThread extends Thread {
+    private class SocketThread implements Callable<Object> {
 
         private Socket socket;
         private InputStream in;
@@ -76,39 +80,12 @@ public class TcpRead {
             try {
                 in = socket.getInputStream();
                 out = socket.getOutputStream();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
-
-
-        @Override
-        public void run() {
-            while (!isInterrupted()) {
-                if (in == null) {
-                    return;
-                }
-                try {
-                    int available = in.available();
-                    if (available > 0) {
-                        byte[] buffer = new byte[available];
-                        int size = in.read(buffer);
-                        if (size > 0) {
-                            String message = ObjTransForm.byteTF_String(buffer);
-                            System.out.println("收到了来自于集中器"+socket.getInetAddress().getHostName()
-                                    +"的消息："+ message.toString());
-                            //返回结果给TcpClient
-                            String response = "我操你妈";
-                            out.write(response.getBytes());
-                            out.flush();
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
 
         public void close() {
 
@@ -128,11 +105,35 @@ public class TcpRead {
                 e.printStackTrace();
             }
         }
+
+        @Override
+        public Object call() {
+            String message = null;
+            while (!isFinished) {
+                if (in == null) {
+                    return "";
+                }
+                try {
+                    int available = in.available();
+                    if (available > 0) {
+                        byte[] buffer = new byte[available];
+                        int size = in.read(buffer);
+                        if (size > 0) {
+                            message = ObjTransForm.byteTF_String(buffer);
+                            String response = "我操你妈";
+                            out.write(response.getBytes());
+                            out.flush();
+                            return "收到了来自于集中器" + socket.getInetAddress().getHostName()
+                                    + "的消息：" + message.toString();
+                            //返回结果给TcpClient
+
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "250";
+        }
     }
-
-
-
-
-
-
 }
