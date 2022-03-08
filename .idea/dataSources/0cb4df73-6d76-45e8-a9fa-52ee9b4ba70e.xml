@@ -797,211 +797,243 @@
     <table id="242" parent="21" name="ceshi"/>
     <table id="243" parent="21" name="singlamp"/>
     <table id="244" parent="21" name="singlecontrol"/>
-    <column id="245" parent="241" name="jid">
+    <table id="245" parent="21" name="user">
+      <Comment>用户登录</Comment>
+    </table>
+    <column id="246" parent="241" name="jid">
       <Position>1</Position>
       <Comment>单纯的外键</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="246" parent="241" name="position">
+    <column id="247" parent="241" name="position">
       <Position>2</Position>
       <Comment>集中器位置</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="247" parent="241" name="ip">
+    <column id="248" parent="241" name="ip">
       <Position>3</Position>
       <Comment>ip地址</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="248" parent="241" name="network">
+    <column id="249" parent="241" name="network">
       <Position>4</Position>
       <Comment>集中控制器名称</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="249" parent="241" name="port">
+    <column id="250" parent="241" name="port">
       <Position>5</Position>
       <Comment>port</Comment>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="250" parent="241" name="address">
+    <column id="251" parent="241" name="address">
       <Position>6</Position>
       <Comment>集中控制器地址</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="251" parent="241" name="addtime">
+    <column id="252" parent="241" name="addtime">
       <Position>7</Position>
       <Comment>添加时间</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="252" parent="241" name="updatetime">
+    <column id="253" parent="241" name="updatetime">
       <Position>8</Position>
       <Comment>修改时间</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <key id="253" parent="241" name="PRIMARY">
+    <key id="254" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>jid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="254" parent="242" name="uid">
+    <column id="255" parent="242" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="255" parent="242" name="uname">
+    <column id="256" parent="242" name="uname">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="256" parent="242" name="asd">
+    <column id="257" parent="242" name="asd">
       <Position>3</Position>
       <DataType>varchar(70)|0s</DataType>
     </column>
-    <key id="257" parent="242" name="PRIMARY">
+    <key id="258" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="258" parent="243" name="id">
+    <column id="259" parent="243" name="id">
       <Position>1</Position>
       <Comment>id</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="259" parent="243" name="uid">
+    <column id="260" parent="243" name="uid">
       <Position>2</Position>
       <Comment>uid</Comment>
       <DataType>varchar(80)|0s</DataType>
     </column>
-    <column id="260" parent="243" name="voltage">
+    <column id="261" parent="243" name="voltage">
       <Position>3</Position>
       <Comment>电压</Comment>
       <DataType>double(10,2 digit)|0s</DataType>
     </column>
-    <column id="261" parent="243" name="flow">
+    <column id="262" parent="243" name="flow">
       <Position>4</Position>
       <Comment>电流</Comment>
       <DataType>double(10,2 digit)|0s</DataType>
     </column>
-    <column id="262" parent="243" name="groups">
+    <column id="263" parent="243" name="groups">
       <Position>5</Position>
       <Comment>组</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="263" parent="243" name="field">
+    <column id="264" parent="243" name="field">
       <Position>6</Position>
       <Comment>域</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="264" parent="243" name="state">
+    <column id="265" parent="243" name="state">
       <Position>7</Position>
       <Comment>状态</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="265" parent="243" name="brightness1">
+    <column id="266" parent="243" name="brightness1">
       <Position>8</Position>
       <Comment>亮度</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="266" parent="243" name="types">
+    <column id="267" parent="243" name="types">
       <Position>9</Position>
       <Comment>类型</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="267" parent="243" name="comtime">
+    <column id="268" parent="243" name="comtime">
       <Position>10</Position>
       <Comment>通讯时间</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="268" parent="243" name="operation">
+    <column id="269" parent="243" name="operation">
       <Position>11</Position>
       <Comment>操作指令</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="269" parent="243" name="grade">
+    <column id="270" parent="243" name="grade">
       <Position>12</Position>
       <Comment>光亮等级</Comment>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="270" parent="243" name="command">
+    <column id="271" parent="243" name="command">
       <Position>13</Position>
       <Comment>反馈信息</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="271" parent="243" name="jid">
+    <column id="272" parent="243" name="jid">
       <Position>14</Position>
       <Comment>外键</Comment>
       <DataType>int(11)|0s</DataType>
     </column>
-    <index id="272" parent="243" name="jid">
+    <index id="273" parent="243" name="jid">
       <ColNames>jid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="273" parent="243" name="PRIMARY">
+    <key id="274" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="274" parent="243" name="singlamp_ibfk_1">
+    <foreign-key id="275" parent="243" name="singlamp_ibfk_1">
       <ColNames>jid</ColNames>
       <RefTableName>centralized</RefTableName>
       <RefColNames>jid</RefColNames>
     </foreign-key>
-    <column id="275" parent="244" name="hander">
+    <column id="276" parent="244" name="hander">
       <Position>1</Position>
       <Comment>包头</Comment>
       <DataType>varchar(25)|0s</DataType>
     </column>
-    <column id="276" parent="244" name="instructions">
+    <column id="277" parent="244" name="instructions">
       <Position>2</Position>
       <Comment>命令字</Comment>
       <DataType>varchar(25)|0s</DataType>
     </column>
-    <column id="277" parent="244" name="pklength">
+    <column id="278" parent="244" name="pklength">
       <Position>3</Position>
       <Comment>包长</Comment>
       <DataType>varchar(25)|0s</DataType>
     </column>
-    <column id="278" parent="244" name="centralized">
+    <column id="279" parent="244" name="centralized">
       <Position>4</Position>
       <Comment>集中器地址</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="279" parent="244" name="uid">
+    <column id="280" parent="244" name="uid">
       <Position>5</Position>
       <Comment>单灯控制器uid</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="280" parent="244" name="command">
+    <column id="281" parent="244" name="command">
       <Position>6</Position>
       <Comment>命令动作</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="281" parent="244" name="groups">
+    <column id="282" parent="244" name="groups">
       <Position>7</Position>
       <Comment>组号</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="282" parent="244" name="lamps">
+    <column id="283" parent="244" name="lamps">
       <Position>8</Position>
       <Comment>灯号</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="283" parent="244" name="bright">
+    <column id="284" parent="244" name="bright">
       <Position>9</Position>
       <Comment>光亮等级</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="284" parent="244" name="checkcode">
+    <column id="285" parent="244" name="checkcode">
       <Position>10</Position>
       <Comment>校验码</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
-    <column id="285" parent="244" name="pktail">
+    <column id="286" parent="244" name="pktail">
       <Position>11</Position>
       <Comment>包尾</Comment>
       <DataType>varchar(50)|0s</DataType>
     </column>
+    <column id="287" parent="245" name="lid">
+      <Position>1</Position>
+      <Comment>主键</Comment>
+      <DataType>int(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="288" parent="245" name="admin">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="289" parent="245" name="password">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="290" parent="245" name="perId">
+      <Position>4</Position>
+      <Comment>权限操作外键</Comment>
+      <DataType>int(128)|0s</DataType>
+    </column>
+    <key id="291" parent="245" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>lid</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>
